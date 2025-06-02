@@ -14,10 +14,39 @@ defmodule SmartlangWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", SmartlangWeb do
+  pipeline :auth do
+    plug Smartlang.Auth.Pipeline
+    plug Smartlang.Plugs.AuthorizeUser
+  end
+
+  pipeline :ensure_auth do
+    plug Guardian.Plug.EnsureAuthenticated
+  end
+
+  scope "/auth", SmartlangWeb do
     pipe_through :browser
 
-    get "/", PageController, :home
+    get "/:provider", AuthController, :request
+    get "/:provider/callback", AuthController, :callback
+    post "/:provider/callback", AuthController, :callback
+    post "/logout", AuthController, :sign_out
+  end
+
+  scope "/translator", SmartlangWeb do
+    pipe_through [:browser, :auth, :ensure_auth]
+
+    get "/supported_languages", TranslatorController, :get_supported_languages
+    post "/translate", TranslatorController, :translate_text
+  end
+
+  scope "/", SmartlangWeb do
+    pipe_through [:browser, :auth, :ensure_auth]
+    get "/userinfo", UserController, :user_info
+  end
+
+  scope "/", SmartlangWeb do
+    pipe_through :browser
+    get "/*path", PageController, :index
   end
 
   # Other scopes may use custom stacks.

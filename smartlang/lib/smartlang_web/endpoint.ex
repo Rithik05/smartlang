@@ -19,11 +19,16 @@ defmodule SmartlangWeb.Endpoint do
   #
   # You should set gzip to true if you are running phx.digest
   # when deploying your static files in production.
+  # plug Plug.Static,
+  #   at: "/",
+  #   from: :smartlang,
+  #   gzip: false,
+  #   only: SmartlangWeb.static_paths()
+
   plug Plug.Static,
     at: "/",
-    from: :smartlang,
-    gzip: false,
-    only: SmartlangWeb.static_paths()
+    from: {:smartlang, "priv/static/fe/dist"},
+    gzip: false
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
@@ -49,5 +54,6 @@ defmodule SmartlangWeb.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
   plug Plug.Session, @session_options
+  plug CORSPlug, origin: ["http://localhost:5173"]
   plug SmartlangWeb.Router
 end
