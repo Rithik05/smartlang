@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import clsx from "clsx"; // if you want, or just string templates
+import clsx from "clsx";
 
 export const Button = ({ children, className, disabled, ...props }) => {
   return (

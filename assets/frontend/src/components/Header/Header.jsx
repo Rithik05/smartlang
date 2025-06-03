@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FiUser } from "react-icons/fi"; // using react-icons for a nice user icon
+import { FiUser } from "react-icons/fi";
 import { useFetch } from "../../hooks/useFetch";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -11,7 +11,6 @@ function Header() {
     const { makeRequest } = useFetch();
 
     const handleSignOut = () => {
-        // Sign out logic here (like clearing tokens, redirecting, etc.)
         const SignOut = async () => {
             const result = await makeRequest({
                 method: "POST",

@@ -1,8 +1,4 @@
-// import { useState } from 'react'
 import {Route, Routes} from 'react-router-dom';
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
-// import './App.css';
 import Home from './pages/Home/Home';
 import Translator from './pages/Translator/Translator';
 import Summarizer from './pages/Summarizer/Summarizer';

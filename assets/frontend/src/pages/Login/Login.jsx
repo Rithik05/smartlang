@@ -3,7 +3,7 @@ import googlelogo from "../../assets/g_logo.png"
 
 function Login() {
   const handleGoogleLogin = () => {
-    window.location.href = "http://localhost:4000/auth/google"; // redirect to backend route
+    window.location.href = "http://localhost:4000/auth/google";
   };
 
   return (

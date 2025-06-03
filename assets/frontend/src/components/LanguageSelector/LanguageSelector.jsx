@@ -23,7 +23,6 @@ export default function LanguageSelector({ onSelect }) {
 
     return (
         <div className="relative inline-block text-left">
-            {/* Button */}
             <button
                 onClick={() => setOpen(!open)}
                 className="flex items-center gap-2 bg-gray-800 text-white px-4 py-2 rounded-lg"
@@ -32,10 +31,8 @@ export default function LanguageSelector({ onSelect }) {
                 <ChevronDown size={18} />
             </button>
 
-            {/* Dropdown Menu */}
             {open && (
                 <div className="absolute z-50 mt-2 w-64 bg-gray-800 rounded-lg shadow-lg p-4">
-                    {/* Search Input */}
                     <div className="flex items-center gap-2 mb-3 bg-gray-700 px-3 py-2 rounded">
                         <Search size={16} className="text-gray-400" />
                         <input
@@ -47,7 +44,6 @@ export default function LanguageSelector({ onSelect }) {
                         />
                     </div>
 
-                    {/* Language List */}
                     <div className="max-h-60 overflow-y-auto space-y-1">
                         {filteredLanguages.map(lang => (
                             <button
@@ -63,19 +59,6 @@ export default function LanguageSelector({ onSelect }) {
                                 {lang.displayName}
                             </button>
                         ))}
-                        {/* {filteredLanguages.map((lang) => (
-              <button
-                key={lang}
-                onClick={() => {
-                  onSelect(lang);
-                  setOpen(false);
-                  setQuery("");
-                }}
-                className="w-full text-left px-3 py-2 rounded hover:bg-gray-700 text-white"
-              >
-                {lang}
-              </button>
-            ))} */}
                         {filteredLanguages.length === 0 && (
                             <div className="text-gray-400 text-sm px-3 py-2">No results found</div>
                         )}

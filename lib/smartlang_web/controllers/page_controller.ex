@@ -3,8 +3,6 @@ defmodule SmartlangWeb.PageController do
   require Logger
 
   def index(conn, _params) do
-    # The home page is often custom made,
-    # so skip the default app layout.
     file_path = Path.join(:code.priv_dir(:smartlang), "static/fe/dist/index.html")
 
     case File.read(file_path) do
@@ -22,9 +20,5 @@ defmodule SmartlangWeb.PageController do
 
         send_resp(conn, 404, "index.html not found")
     end
-
-    # conn
-    # |> put_resp_content_type("text/html")
-    # |> send_file(200, file_path)
   end
 end

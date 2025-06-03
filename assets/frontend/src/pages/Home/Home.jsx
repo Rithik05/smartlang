@@ -9,15 +9,12 @@ function Home() {
             <Header />
             <div className="min-h-screen flex items-center justify-center bg-gray-600">
                 <div className="border border-gray-700 bg-gray-800 p-10 rounded-2xl max-w-2xl mx-auto shadow-xl">
-                    {/* App Title */}
                     <h2 className="text-4xl font-bold text-white text-center mb-8">Smartlang-AI</h2>
                     <p className="text-center text-gray-400 mb-10">
                         Your AI-powered toolkit for text summarization and language translation.
                     </p>
 
-                    {/* Buttons Section */}
                     <div className="flex justify-center gap-10">
-                        {/* Summarizer */}
                         <div className="flex flex-col items-center">
                             <button
                                 className="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-800 transition"
@@ -30,7 +27,6 @@ function Home() {
                             </span>
                         </div>
 
-                        {/* Translator */}
                         <div className="flex flex-col items-center">
                             <button
                                 className="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-800 transition"
