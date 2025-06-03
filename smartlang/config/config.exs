@@ -31,7 +31,10 @@ config :smartlang, SmartlangWeb.Endpoint,
 # at the `config/runtime.exs`.
 config :smartlang, Smartlang.Mailer, adapter: Swoosh.Adapters.Local
 
-config :smartlang, :openai_api_key, System.get_env("OPENAI_API_KEY")
+# config :smartlang, :openai_creds,
+#   url: "https://api.openai.com/v1/chat/completions",
+#   api_key: System.get_env("OPENAI_API_KEY"),
+#   data_config: [messages: :required, model: "gpt-4.1"]
 
 config :smartlang, :cohere_creds,
   url: "https://api.cohere.com/v2/chat",
