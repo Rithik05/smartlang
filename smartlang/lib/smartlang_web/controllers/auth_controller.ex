@@ -35,7 +35,6 @@ defmodule SmartlangWeb.AuthController do
       {:ok, %User{} = user} ->
         conn
         |> Guardian.Plug.sign_in(user, %{}, ttl: {2, :days})
-
         |> redirect(to: "/home")
 
       {:error, changeset} ->

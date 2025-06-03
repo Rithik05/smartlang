@@ -16,15 +16,17 @@ defmodule SmartlangWeb.TranslatorController do
 
   def get_supported_languages(conn, _) do
     gconn = google_connection()
-    case  Projects.translate_projects_locations_get_supported_languages(
-        gconn,
-        "projects/#{@project_id}/locations/#{@location}",
-        displayLanguageCode: "en"
-    ) do
+
+    case Projects.translate_projects_locations_get_supported_languages(
+           gconn,
+           "projects/#{@project_id}/locations/#{@location}",
+           displayLanguageCode: "en"
+         ) do
       {:ok, %Model.SupportedLanguages{} = response} ->
         conn
         |> put_status(:ok)
-        |> json(%{response: Map.from_struct(response)})
+        |> json(%{response: response})
+
       {:error, _error} ->
         conn
         |> put_status(:bad_request)
@@ -39,12 +41,14 @@ defmodule SmartlangWeb.TranslatorController do
       sourceLanguageCode: params["source"],
       targetLanguageCode: params["target"]
     }
+
     gconn = google_connection()
+
     case Projects.translate_projects_translate_text(
-        gconn,
-        "projects/#{@project_id}/locations/#{@location}",
-        body: request
-    ) do
+           gconn,
+           "projects/#{@project_id}/locations/#{@location}",
+           body: request
+         ) do
       {:ok, %Model.TranslateTextResponse{} = response} ->
         conn
         |> put_status(:ok)

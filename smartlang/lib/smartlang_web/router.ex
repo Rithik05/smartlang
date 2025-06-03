@@ -42,11 +42,7 @@ defmodule SmartlangWeb.Router do
   scope "/", SmartlangWeb do
     pipe_through [:browser, :auth, :ensure_auth]
     get "/userinfo", UserController, :user_info
-  end
-
-  scope "/", SmartlangWeb do
-    pipe_through :browser
-    get "/*path", PageController, :index
+    post "/summarizer/summarize", SummaryController, :summarize
   end
 
   # Other scopes may use custom stacks.
@@ -69,5 +65,10 @@ defmodule SmartlangWeb.Router do
       live_dashboard "/dashboard", metrics: SmartlangWeb.Telemetry
       forward "/mailbox", Plug.Swoosh.MailboxPreview
     end
+  end
+
+  scope "/", SmartlangWeb do
+    pipe_through :browser
+    get "/*path", PageController, :index
   end
 end

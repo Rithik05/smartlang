@@ -5,8 +5,7 @@ defmodule SmartlangWeb.UserController do
 
   def user_info(conn, _params) do
     user = conn.assigns[:user]
-    IO.inspect(user, label: "user")
-    # IO.inspect(conn, label: "connn after user")
+
     case UserService.retrieve(%{id: user["id"]}) do
       %User{} = user ->
         conn

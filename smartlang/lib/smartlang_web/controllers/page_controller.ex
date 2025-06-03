@@ -9,15 +9,20 @@ defmodule SmartlangWeb.PageController do
 
     case File.read(file_path) do
       {:ok, content} ->
-        IO.inspect(content, label: "content")
         rendered = String.replace(content, "__CSRF_TOKEN__", Plug.CSRFProtection.get_csrf_token())
+
         conn
         |> put_resp_content_type("text/html")
         |> send_resp(200, rendered)
+
       {:error, reason} ->
-        Logger.error("[SmartlangWeb.PageController] Unable to render index.html due to: #{inspect(reason)}")
+        Logger.error(
+          "[SmartlangWeb.PageController] Unable to render index.html due to: #{inspect(reason)}"
+        )
+
         send_resp(conn, 404, "index.html not found")
     end
+
     # conn
     # |> put_resp_content_type("text/html")
     # |> send_file(200, file_path)

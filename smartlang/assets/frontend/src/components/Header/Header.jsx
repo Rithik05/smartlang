@@ -29,7 +29,7 @@ function Header() {
         const UserInfo = async () => {
             const result = await makeRequest({
                 method: "GET",
-                url: "http://localhost:4000/userinfo"
+                url: "http://localhost:4000/userinfo",
             });
             if (result.status === 401) {
                 navigate("/")
