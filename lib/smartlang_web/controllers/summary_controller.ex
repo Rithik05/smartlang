@@ -3,7 +3,7 @@ defmodule SmartlangWeb.SummaryController do
   require Logger
   alias Smartlang.AiClient
 
-  @cohere_creds Application.compile_env(:smartlang, :cohere_creds)
+  @cohere_creds Application.compile_env!(:smartlang, :cohere_creds)
 
   def summarize(
         conn,

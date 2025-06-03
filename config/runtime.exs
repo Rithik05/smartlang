@@ -29,6 +29,16 @@ config :ueberauth, Ueberauth.Strategy.Google.OAuth,
   client_secret: System.get_env("GOOGLE_CLIENT_SECRET"),
   redirect_uri: System.get_env("GOOGLE_REDIRECT_URI")
 
+# config :smartlang, :openai_creds,
+#   url: "https://api.openai.com/v1/chat/completions",
+#   api_key: System.get_env("OPENAI_API_KEY"),
+#   data_config: [messages: :required, model: "gpt-4.1"]
+
+config :smartlang, :cohere_creds,
+  url: "https://api.cohere.com/v2/chat",
+  api_key: System.get_env("COHERE_API_KEY"),
+  data_config: [messages: :required, temperature: 0.3, model: "command-a-03-2025"]
+
 case config_env() do
   :prod ->
     database_url =
