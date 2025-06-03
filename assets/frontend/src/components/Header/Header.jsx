@@ -3,6 +3,7 @@ import { FiUser } from "react-icons/fi";
 import { useFetch } from "../../hooks/useFetch";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Header() {
     const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -14,7 +15,7 @@ function Header() {
         const SignOut = async () => {
             const result = await makeRequest({
                 method: "POST",
-                url: "http://localhost:4000/auth/logout",
+                url: "/auth/logout",
             });
 
             if (result.status === 200 && result.data?.response == "Successfully signed out") {
@@ -28,7 +29,7 @@ function Header() {
         const UserInfo = async () => {
             const result = await makeRequest({
                 method: "GET",
-                url: "http://localhost:4000/userinfo",
+                url: "/userinfo",
             });
             if (result.status === 401) {
                 navigate("/")
@@ -42,7 +43,9 @@ function Header() {
 
     return (
         <header className="w-full bg-gray-800 border-b border-gray-600 shadow-sm p-4 flex items-center justify-between">
-            <div className="text-2xl font-semibold text-white tracking-tight">Smartlang-AI</div>
+            <Link to="/home">
+                <div className="text-2xl font-semibold text-white tracking-tight cursor-pointer">Smartlang-AI</div>
+            </Link>
 
             <div className="relative">
                 <button

@@ -20,7 +20,7 @@ function Translator() {
         const fetchTranslation = async () => {
             const result = await makeRequest({
                 method: "POST",
-                url: "http://localhost:4000/translator/translate",
+                url: "/translator/translate",
                 params: {
                     source: selectedSourceLanguage,
                     target: selectedTargetLanguage,

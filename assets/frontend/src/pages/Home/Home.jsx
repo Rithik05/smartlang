@@ -23,7 +23,7 @@ function Home() {
                                 Summarizer
                             </button>
                             <span className="mt-3 text-sm text-gray-400 text-center max-w-[200px]">
-                                Quickly get a concise summary of your PDFs or large texts.
+                                Quickly get a concise summary of your PDFs
                             </span>
                         </div>
 

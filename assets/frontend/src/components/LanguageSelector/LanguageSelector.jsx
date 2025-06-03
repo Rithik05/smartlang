@@ -17,7 +17,7 @@ export default function LanguageSelector({ onSelect }) {
     useEffect(() => {
         makeRequest({
             method: "GET",
-            url: "http://localhost:4000/translator/supported_languages",
+            url: "/translator/supported_languages",
         });
     }, [makeRequest]);
 

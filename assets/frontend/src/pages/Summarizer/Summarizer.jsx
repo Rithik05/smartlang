@@ -28,7 +28,7 @@ const Summarizer = () => {
 
     try {
       setLoading(true);
-      const response = await fetch("http://localhost:4000/summarizer/summarize", {
+      const response = await fetch("/summarizer/summarize", {
         method: "POST",
         body: formData,
         headers: { "x-csrf-token": csrfToken }
@@ -43,7 +43,7 @@ const Summarizer = () => {
       setLoading(false)
     } catch (error) {
       console.error("Error summarising PDF:", error);
-      setSummary("Failed to summarise the PDF.");
+      setSummary([{text: "Failed to summarise the PDF."}]);
     }
   };
 

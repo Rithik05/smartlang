@@ -23,7 +23,7 @@ Clone the repository:
 ```bash
 git clone https://github.com/yourusername/smartlang.git
 ```
-## prerequsites
+## Prerequisites
 Install Poppler:
 For MacOS
 ```bash
