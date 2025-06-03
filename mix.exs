@@ -32,6 +32,7 @@ defmodule Smartlang.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:con_cache, "~> 1.1"},
       {:cors_plug, "~> 3.0"},
       {:guardian, "~> 2.3"},
       {:google_api_translate, "~> 0.22.0"},

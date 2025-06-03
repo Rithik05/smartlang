@@ -31,16 +31,6 @@ config :smartlang, SmartlangWeb.Endpoint,
 # at the `config/runtime.exs`.
 config :smartlang, Smartlang.Mailer, adapter: Swoosh.Adapters.Local
 
-# config :smartlang, :openai_creds,
-#   url: "https://api.openai.com/v1/chat/completions",
-#   api_key: System.get_env("OPENAI_API_KEY"),
-#   data_config: [messages: :required, model: "gpt-4.1"]
-
-config :smartlang, :cohere_creds,
-  url: "https://api.cohere.com/v2/chat",
-  api_key: System.get_env("COHERE_API_KEY"),
-  data_config: [messages: :required, temperature: 0.3, model: "command-a-03-2025"]
-
 # Configure esbuild (the version is required)
 config :esbuild,
   version: "0.17.11",

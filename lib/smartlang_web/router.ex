@@ -16,7 +16,7 @@ defmodule SmartlangWeb.Router do
 
   pipeline :auth do
     plug Smartlang.Auth.Pipeline
-    plug Smartlang.Plugs.AuthorizeUser
+    plug SmartlangWeb.Plugs.AuthorizeUser
   end
 
   pipeline :ensure_auth do

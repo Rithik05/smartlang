@@ -3,8 +3,6 @@ defmodule SmartlangWeb.SummaryController do
   require Logger
   alias Smartlang.AiClient
 
-  @cohere_creds Application.compile_env!(:smartlang, :cohere_creds)
-
   def summarize(
         conn,
         %{
@@ -14,7 +12,9 @@ defmodule SmartlangWeb.SummaryController do
           }
         }
       ) do
-    case AiClient.summarize_file(path, @cohere_creds) do
+    cohere_creds = Application.fetch_env!(:smartlang, :cohere_creds)
+
+    case AiClient.summarize_file(path, cohere_creds) do
       {:ok,
        %{
          "message" => %{

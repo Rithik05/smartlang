@@ -22,6 +22,7 @@ defmodule Smartlang.Application do
         SmartlangWeb.Endpoint
       ]
       |> Enum.concat(maybe_start_goth_child(System.get_env("GOTH_CREDS")))
+      |> Enum.concat(concache_config())
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
@@ -45,6 +46,10 @@ defmodule Smartlang.Application do
     child = {Goth, name: Smartlang.Goth, source: source}
 
     [child]
+  end
+
+  def concache_config() do
+    [{ConCache, Application.fetch_env!(:smartlang, :concache_config)}]
   end
 
   # Tell Phoenix to update the endpoint configuration

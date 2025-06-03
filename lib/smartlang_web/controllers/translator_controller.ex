@@ -17,20 +17,33 @@ defmodule SmartlangWeb.TranslatorController do
   def get_supported_languages(conn, _) do
     gconn = google_connection()
 
-    case Projects.translate_projects_locations_get_supported_languages(
-           gconn,
-           "projects/#{@project_id}/locations/#{@location}",
-           displayLanguageCode: "en"
-         ) do
+    func = fn ->
+      Projects.translate_projects_locations_get_supported_languages(
+        gconn,
+        "projects/#{@project_id}/locations/#{@location}",
+        displayLanguageCode: "en"
+      )
+      |> tap(fn _ ->
+        Logger.info(
+          "[SmartlangWeb.TranslatorController] fetching supported languages using google api"
+        )
+      end)
+    end
+
+    case Smartlang.Cache.get_or_store(:google_translate_supported_languages, func) do
       {:ok, %Model.SupportedLanguages{} = response} ->
         conn
         |> put_status(:ok)
         |> json(%{response: response})
 
-      {:error, _error} ->
+      {:error, error} ->
+        Logger.error(
+          "[SmartlangWeb.TranslatorController] Unable to fetch supported languages due to: #{inspect(error)}"
+        )
+
         conn
         |> put_status(:bad_request)
-        |> json(%{response: "Unable to translate"})
+        |> json(%{response: "Error Occured"})
     end
   end
 
@@ -54,7 +67,11 @@ defmodule SmartlangWeb.TranslatorController do
         |> put_status(:ok)
         |> json(%{response: response})
 
-      {:error, _error} ->
+      {:error, error} ->
+        Logger.error(
+          "[SmartlangWeb.TranslatorController] Unable to translate text due to: #{inspect(error)}"
+        )
+
         conn
         |> put_status(:bad_request)
         |> json(%{response: "Unable to translate"})

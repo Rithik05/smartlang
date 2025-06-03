@@ -39,6 +39,13 @@ config :smartlang, :cohere_creds,
   api_key: System.get_env("COHERE_API_KEY"),
   data_config: [messages: :required, temperature: 0.3, model: "command-a-03-2025"]
 
+config :smartlang,
+  concache_config: [
+    name: :smartlang_cache,
+    ttl_check_interval: :timer.seconds(1800),
+    global_ttl: :timer.seconds(86400)
+  ]
+
 case config_env() do
   :prod ->
     database_url =

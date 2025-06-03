@@ -1,4 +1,4 @@
-defmodule Smartlang.Plugs.AuthorizeUser do
+defmodule SmartlangWeb.Plugs.AuthorizeUser do
   import Plug.Conn
   require Logger
 
