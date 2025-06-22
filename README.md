@@ -57,7 +57,9 @@ run phx server from smartlang dir
 mix phx.server
 ```
 
-run end_to_end_test(Cypress)
+Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+
+Run End To End Tests (Cypress)
 ```bash
 source .env.end_to_end_test
 mix deps.get
@@ -66,11 +68,9 @@ mix phx.server # start the phx server
 npx cypress open # Now you can run cypress tests
 ```
 
-run Elixir Tests
+Run Elixir Tests
 ```bash
 source .env.test
 mix ecto.setup
 mix test
 ```
-
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
