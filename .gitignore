@@ -35,5 +35,7 @@ smartlang-*.tar
 npm-debug.log
 /assets/node_modules/
 
-# Ignore .env.dev
+# Ignore env's
 .env.dev
+.env.test
+.env.end_to_end_test

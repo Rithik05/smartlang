@@ -32,14 +32,17 @@ defmodule Smartlang.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:bypass, "~> 2.1", only: :test},
       {:con_cache, "~> 1.1"},
       {:cors_plug, "~> 3.0"},
       {:guardian, "~> 2.3"},
       {:google_api_translate, "~> 0.22.0"},
       {:goth, "~> 1.4"},
+      {:hammox, "~> 0.7.0"},
       {:phoenix, "~> 1.7.21"},
       {:phoenix_ecto, "~> 4.5"},
       {:ecto_sql, "~> 3.10"},
+      {:mock, "~> 0.3.9", only: :test},
       {:postgrex, ">= 0.0.0"},
       {:phoenix_html, "~> 4.1"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},

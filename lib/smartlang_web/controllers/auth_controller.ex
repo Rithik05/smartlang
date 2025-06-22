@@ -7,18 +7,6 @@ defmodule SmartlangWeb.AuthController do
   alias Smartlang.UserFromAuth
   alias Smartlang.Schema.User
 
-  def user_info(%Plug.Conn{assigns: %{user: user}} = conn, _params) do
-    conn
-    |> put_status(:ok)
-    |> json(%{response: user})
-  end
-
-  def user_info(conn, _params) do
-    conn
-    |> put_status(:unauthorized)
-    |> json(%{response: "Unauthorized"})
-  end
-
   def sign_out(conn, _params) do
     Logger.info("[AuthController] sign_out user")
 
