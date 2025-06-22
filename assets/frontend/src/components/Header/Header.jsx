@@ -31,10 +31,10 @@ function Header() {
                 method: "GET",
                 url: "/userinfo",
             });
-            if (result.status === 401) {
+            if (result?.status === 401) {
                 navigate("/")
             }
-            if (result.status === 200 && result.data?.response) {
+            if (result?.status === 200 && result?.data?.response) {
                 setUserEmail(result.data.response.email)
             }
         };

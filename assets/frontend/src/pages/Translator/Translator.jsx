@@ -37,7 +37,7 @@ function Translator() {
 
     return (
         <div>
-            <Header/>
+            <Header />
             <div id="translator" className="min-h-screen bg-gradient-to-b from-gray-50 flex flex-col items-center justify-center py-12">
                 <div className="text-center mb-12">
                     <h1 className="text-5xl font-bold text-gray-900 mb-4">Translator</h1>
@@ -48,7 +48,7 @@ function Translator() {
 
                 <div className="bg-gray-900 text-black p-10 rounded-2xl shadow-2xl">
                     <div className="flex gap-8 max-w-7xl mx-auto">
-                        <div className="w-[650px] bg-gray-700 rounded-xl p-6 flex flex-col gap-6">
+                        <div id="sourceLanguage" className="w-[650px] bg-gray-700 rounded-xl p-6 flex flex-col gap-6">
                             <LanguageSelector
                                 selected={selectedSourceLanguage}
                                 onSelect={(lang) => setSourceLanguage(lang)}
@@ -61,7 +61,7 @@ function Translator() {
                             ></textarea>
                         </div>
 
-                        <div className="w-[650px] bg-gray-700 rounded-xl p-6 flex flex-col gap-6 relative">
+                        <div id="targetLanguage" className="w-[650px] bg-gray-700 rounded-xl p-6 flex flex-col gap-6 relative">
                             <LanguageSelector
                                 onSelect={(langCode) => setTargetLanguage(langCode)}
                             />
