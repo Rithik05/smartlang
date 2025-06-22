@@ -46,6 +46,12 @@ config :smartlang,
     global_ttl: :timer.seconds(86400)
   ]
 
+unless Mix.env() == :test do
+  config :smartlang, :ai_client, Smartlang.AiClient
+else
+  config :smartlang, :ai_client, Smartlang.AiClientMock
+end
+
 case config_env() do
   :prod ->
     database_url =
