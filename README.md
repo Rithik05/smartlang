@@ -60,6 +60,8 @@ mix phx.server
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
 Run End To End Tests (Cypress)
+
+follow the same steps to `generate static build` from frontend and then run:
 ```bash
 source .env.end_to_end_test
 mix deps.get
