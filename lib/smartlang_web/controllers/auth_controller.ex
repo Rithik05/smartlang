@@ -42,7 +42,8 @@ defmodule SmartlangWeb.AuthController do
 
         conn
         |> put_status(:internal_server_error)
-        |> redirect(to: "/login")
+        # Redirect to Login Page
+        |> redirect(to: "/")
     end
   end
 
@@ -51,6 +52,7 @@ defmodule SmartlangWeb.AuthController do
 
     conn
     |> put_status(:unauthorized)
-    |> redirect(to: "/login")
+    # Redirect to Login Page
+    |> redirect(to: "/")
   end
 end

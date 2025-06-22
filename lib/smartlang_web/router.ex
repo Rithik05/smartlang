@@ -15,12 +15,7 @@ defmodule SmartlangWeb.Router do
   end
 
   pipeline :auth do
-    plug Smartlang.Auth.Pipeline
-    plug SmartlangWeb.Plugs.AuthorizeUser
-  end
-
-  pipeline :ensure_auth do
-    plug Guardian.Plug.EnsureAuthenticated
+    plug SmartlangWeb.Plugs.GatedAuthAccessPipeline
   end
 
   scope "/auth", SmartlangWeb do
@@ -33,16 +28,23 @@ defmodule SmartlangWeb.Router do
   end
 
   scope "/translator", SmartlangWeb do
-    pipe_through [:browser, :auth, :ensure_auth]
+    pipe_through [:browser, :auth]
 
     get "/supported_languages", TranslatorController, :get_supported_languages
     post "/translate", TranslatorController, :translate_text
   end
 
   scope "/", SmartlangWeb do
-    pipe_through [:browser, :auth, :ensure_auth]
+    pipe_through [:browser, :auth]
     get "/userinfo", UserController, :user_info
     post "/summarizer/summarize", SummaryController, :summarize
+  end
+
+  scope "/cypress", SmartlangWeb do
+    pipe_through [:browser]
+
+    # Mock Login
+    get "/auth/google/callback", CypressTestController, :login
   end
 
   # Other scopes may use custom stacks.

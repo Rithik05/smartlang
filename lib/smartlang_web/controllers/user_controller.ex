@@ -3,9 +3,7 @@ defmodule SmartlangWeb.UserController do
   alias Smartlang.Service.User, as: UserService
   alias Smartlang.Schema.User
 
-  def user_info(conn, _params) do
-    user = conn.assigns[:user]
-
+  def user_info(%Plug.Conn{assigns: %{user: user}} = conn, _params) do
     case UserService.retrieve(%{id: user["id"]}) do
       %User{} = user ->
         conn
@@ -17,5 +15,11 @@ defmodule SmartlangWeb.UserController do
         |> put_status(:bad_request)
         |> json(%{response: "User Not Found"})
     end
+  end
+
+  def user_info(conn, _params) do
+    conn
+    |> put_status(:bad_request)
+    |> json(%{response: "User Not Found"})
   end
 end
