@@ -7,7 +7,7 @@ defmodule Smartlang.Cache do
     ConCache.fetch_or_store(table_name(), key, func)
   end
 
-  defp table_name() do
+  def table_name() do
     Application.get_env(:smartlang, :concache_config)
     |> Keyword.fetch!(:name)
   end

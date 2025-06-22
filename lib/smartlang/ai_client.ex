@@ -1,6 +1,8 @@
 defmodule Smartlang.AiClient do
   @moduledoc "AI client via Finch"
 
+  @behaviour Smartlang.AiClientBehaviour
+
   def summarize_file(file_path, url: url, api_key: api_key, data_config: data_config) do
     with {content, 0} <- System.cmd("pdftotext", [file_path, "-"]),
          payload = build_payload(content, data_config),

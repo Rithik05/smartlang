@@ -21,5 +21,6 @@ defmodule Smartlang.Schema.User do
     user
     |> cast(attrs, @cast_fields)
     |> validate_required(@required_fields)
+    |> unique_constraint(:email, name: :users_email_index)
   end
 end
