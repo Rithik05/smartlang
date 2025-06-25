@@ -7,8 +7,6 @@ defmodule SmartlangWeb.CypressTestController do
   @valid_user_email "valid_user@smartlang.com"
 
   def login(conn, %{"email" => @valid_user_email}) do
-    IO.inspect("log in here")
-
     case create_mock_user(@valid_user_email) do
       {:ok, %User{} = user} ->
         conn
@@ -24,8 +22,6 @@ defmodule SmartlangWeb.CypressTestController do
   end
 
   def login(conn, _params) do
-    IO.inspect("Happened here")
-
     conn
     |> put_status(:unauthorized)
     |> json(%{response: "UnAuthorized"})
